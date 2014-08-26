@@ -38,6 +38,11 @@ var utils = module.exports = {
     parseTemplateOption: require('./template-parser.js'),
 
     /**
+     *  Helper function for getting/restoring the cursor in contenteditable elements
+     */
+    selectionHelper: require('./contenteditable-selection.js'),
+
+    /**
      *  get a value from an object keypath
      */
     get: function (obj, key) {
