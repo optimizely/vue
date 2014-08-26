@@ -488,6 +488,29 @@ describe('Utils', function () {
 
     describe('objectToArray', function () {
         // TODO
+    }),
+    describe('contenteditable-selection', function() {
+        var selectionHelper = utils.selectionHelper
+        it('Expect saving a restored cursor to match', function() {
+            var template = '<div id="selection-test-div" contenteditable="true">This text is at least 15 characters long.</div>',
+                el       = document.createElement('template')
+            el.innerHTML = template
+            appendMock(el)
+            var expectedSelection = {start: 7, end: 7} // start == end means it's just the cursor
+            selectionHelper.restoreSelection(el, expectedSelection)
+            var selection = selectionHelper.saveSelection(el)
+            assert.deepEqual(selection, expectedSelection)
+        });
+        it('Expect saving a restored selection to match', function() {
+            var template = '<div id="selection-test-div" contenteditable="true">This text is at least 15 characters long.</div>',
+                el       = document.createElement('template')
+            el.innerHTML = template
+            appendMock(el)
+            var expectedSelection = {start: 3, end: 15}
+            selectionHelper.restoreSelection(el, expectedSelection)
+            var selection = selectionHelper.saveSelection(el)
+            assert.deepEqual(selection, expectedSelection)
+        });
     })
 
 })

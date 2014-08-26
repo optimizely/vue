@@ -16,6 +16,7 @@
         "src/viewmodel.js",
         "src/binding.js",
         "src/observer.js",
+        "src/contenteditable-selection.js",
         "src/directive.js",
         "src/exp-parser.js",
         "src/template-parser.js",
