@@ -8,7 +8,7 @@ var Emitter     = require('./emitter'),
     DepsParser  = require('./deps-parser'),
     ExpParser   = require('./exp-parser'),
     ViewModel,
-    
+
     // cache methods
     slice       = [].slice,
     extend      = utils.extend,
@@ -797,6 +797,9 @@ CompilerProto.defineVmProp = function (key, binding, value) {
     var ob = this.observer
     binding.value = value
     def(this.vm, key, {
+        // BEGIN Optimizely customization
+        configurable: !!__TEST__, // configurable only when testing
+        // END Optimizely customization
         get: function () {
             if (Observer.shouldGet) ob.emit('get', key)
             return binding.value
